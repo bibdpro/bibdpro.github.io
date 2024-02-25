@@ -83,7 +83,7 @@
         <div class="p-2 grid grid-cols-3 gap-2 sm:grid-cols-8">
           <template x-if="detail.ximages.length > 0">
             <template x-for="ximg in detail.ximages">
-              <a :href="ximg.download_url" data-lightbox="roadtrip" class="flex items-center border-2 border-white bg-white">
+              <a :href="ximg.path" data-lightbox="roadtrip" class="flex items-center border-2 border-white bg-white">
                 <img :src="ximg.path" oncontextmenu="return false;" loading="lazy">
               </a>
             </template>
