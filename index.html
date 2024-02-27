@@ -83,7 +83,7 @@
           <template x-if="detail.ximages.length > 0">
             <template x-for="ximg in detail.ximages">
               <a :href="ximg.path" data-lightbox="roadtrip" class="flex items-center border-2 border-white bg-white">
-                <img :src="ximg.path" oncontextmenu="return false;" loading="lazy">
+                <img :src="ximg.path" :alt="ximg.name" oncontextmenu="return false;" loading="lazy">
               </a>
             </template>
           </template>
@@ -99,7 +99,7 @@
 <template x-if="detail.xposters.length > 0">
   <template x-for="(xpos, index) in paginatedPosters" :key="index">
     <div class="x-home-items border-2 border-white bg-white text-center text-slate-500" x-on:click="window.location.hash = '#stream?to=' + xpos.name">
-      <img :src="xpos.path" oncontextmenu="return false;" loading="lazy">
+      <img :src="xpos.path" :alt="xpos.name.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')" oncontextmenu="return false;" loading="lazy">
       <p x-text="xpos.name.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')" style="font-size: 10px"></p>
     </div>
   </template>
