@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <script async src="https://cdn.ampproject.org/v0.js"></script>
+  <meta name="theme-color" content="#000000">
+  <link rel="manifest" href="app.webmanifest">
+  <link rel="apple-touch-icon" href="/icons/ios.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5, user-scalable=no">
+  <style amp-boilerplate>
+    body {
+      -webkit-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
+      -moz-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
+      -ms-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
+      animation: -amp-start 8s steps(1, end) 0s 1 normal both;
+    }
+
+    @-webkit-keyframes -amp-start {
+      from {
+        visibility: hidden;
+
+
+      }
+
+      to {
+        visibility: visible;
+      }
+    }
+
+    @-moz-keyframes -amp-start {
+      from {
+        visibility: hidden;
+      }
+
+      to {
+        visibility: visible;
+      }
+    }
+
+    @-ms-keyframes -amp-start {
+      from {
+        visibility: hidden;
+      }
+
+      to {
+        visibility: visible;
+      }
+    }
+
+    @-o-keyframes -amp-start {
+      from {
+        visibility: hidden;
+      }
+
+      to {
+        visibility: visible;
+      }
+    }
+
+    @keyframes -amp-start {
+      from {
+        visibility: hidden;
+      }
+
+      to {
+        visibility: visible;
+      }
+    }
+  </style>
+  <noscript>
+    <style amp-boilerplate>
+      body {
+        -webkit-animation: none;
+        -moz-animation: none;
+        -ms-animation: none;
+        animation: none;
+      }
+    </style>
+  </noscript>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Alice&family=Cherry+Bomb+One&family=Love+Ya+Like+A+Sister&display=swap');
+    
+    .active-symbols {
+      font-variation-settings:
+        'FILL' 1,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24
+    }
+    
+    body {
+      font-family: "Alice", serif;
+      font-weight: 400;
+      font-style: normal;
+    }
+    
+    .app-brand-title {
+      font-family: "Cherry Bomb One", system-ui;
+      font-weight: 400;
+      font-style: normal;
+    }
+    
+    .app-menu-item {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+    }
+    
+    .app-menu-item small {
+      font-size: 8px;
+    }
+    
+    .app-main section {
+      display: none;
+    }
+    
+    .app-main section.active {
+      display: block;
+    }
+  </style>
+  <title>BIBD</title>
+  <link rel="stylesheet" href="app.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+  <script type="module" src="app.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body class="bg-slate-950 text-white select-none" id="app">
+  <!-- Main Application Header -->
+  <header class="app-header bg-black border-b flex items-center justify-evenly h-12">
+    <div class="app-header-settings">
+      <select class="app-header-select w-10 sm:w-full text-xs h-6 rounded-lg border border-gray-300 bg-black text-white focus:outline-none focus:border-indigo-500" v-model="selectedOption">
+        <option value="preview_on">Preview - On</option>
+        <option value="preview_off">Preview - Off</option>
+        <option value="fullscreen_on">Fullscreen - On</option>
+        <option value="fullscreen_off">Fullscreen - Off</option>
+        <option value="all_on">All - On</option>
+        <option value="all_off">All - Off</option>
+      </select>
+    </div>
+    <div class="app-header-brand flex items-center justify-center w-1/2 sm:w-1/4">
+      <h1 class="app-brand-title text-3xl">BIBDpro</h1>
+    </div>
+    <div class="app-header-search">
+      <span class="search-icon material-symbols-outlined sm:hidden">search</span>
+      <input type="text" class="search-input h-6 p-3 hidden rounded-lg border border-gray-300 bg-black text-white focus:outline-none focus:border-indigo-500 sm:block" placeholder="Search...">
+    </div>
+    <nav class="app-main-nav bg-black border-t sm:border-none fixed bottom-0 left-0 right-0 sm:static sm:w-1/4 h-12 sm:h-0">
+      <ul class="app-nav-menu flex items-center justify-evenly py-2 sm:py-0">
+        <li class="app-menu-item app-menu-favorites" :class="{ 'active-symbols': selectedSection === 'favorites' }" @click="selectSection('favorites')">
+          <span class="favorites-icon material-symbols-outlined sm:hidden">favorite</span>
+          <small class="">Favorites</small>
+        </li>
+        <li class="app-menu-item app-menu-images" :class="{ 'active-symbols': selectedSection === 'images' }" @click="selectSection('images')">
+          <span class="images-icon material-symbols-outlined sm:hidden">image</span>
+          <small class="">Images</small>
+        </li>
+        <li class="app-menu-item app-menu-home" :class="{ 'active-symbols': selectedSection === 'home' }" @click="selectSection('home')">
+          <span class="home-icon material-symbols-outlined sm:hidden">home</span>
+          <small class="">Home</small>
+        </li>
+        <li class="app-menu-item app-menu-tv" :class="{ 'active-symbols': selectedSection === 'tv' }" @click="selectSection('tv')">
+          <span class="tv-icon material-symbols-outlined sm:hidden">tv</span>
+          <small class="">Stream</small>
+        </li>
+        <li class="app-menu-item app-menu-news" :class="{ 'active-symbols': selectedSection === 'news' }" @click="selectSection('news')">
+          <span class="news-icon material-symbols-outlined sm:hidden">news</span>
+          <small class="">News</small>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <!-- End Main Application Header -->
+
+  <!-- Main Application Content -->
+  <main class="app-main text-xs">
+    <div class="md:container md:mx-auto h-screen">
+      <section class="app-main-favorites" :class="{ 'active': selectedSection === 'favorites' }">
+        <div class="app-main-header-favorites py-4 px-6 opacity-20">
+          <select name="favorites" class="text-white bg-black text-white border border-gray-300 rounded-lg absolute right-5 focus:outline-none focus:border-indigo-500">
+            <option value="video" selected>Video</option>
+            <option value="image">Image</option>
+          </select>
+        </div>
+        <div class="app-main-favorites-content-list mt-5 grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div class="app-main-favorites-content-list-items max-h-28 p-2 mx-3 sm:mx-0 flex bg-gray-800 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105">
+            <div class="app-main-favorites-content-list-item-img max-w-28 max-h-28 min-w-28 min-h-24 overflow-hidden rounded-lg">
+              <img class="app-main-favorites-content-list-item-img-src w-full h-full object-cover" src="https://source.unsplash.com/random/" alt="">
+            </div>
+            <div class="app-main-favorites-content-list-item-content flex flex-col justify-center pl-2">
+              <h1 class="app-main-favorites-content-list-content-title font-semibold text-white">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h1>
+              <div class="flex items-center mt-1 text-gray-200">
+                <span class="material-symbols-outlined text-gray-500 mr-2">heart_minus</span>
+                <span class="material-symbols-outlined text-gray-500">download</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="app-main-images" :class="{ 'active': selectedSection === 'images' }">
+        <div class="app-main-images-content">Images content</div>
+      </section>
+      <section class="app-main-home" :class="{ 'active': selectedSection === 'home' }">Home Content</section>
+      <section class="app-main-tv" :class="{ 'active': selectedSection === 'tv' }">Stream Content</section>
+      <section class="app-main-news" :class="{ 'active': selectedSection === 'news' }">News Content</section>
+    </div>
+  </main>
+  <!-- End Main Application Content -->
+
+<script>
+  // app.js
+  
+  const app = Vue.createApp({
+    data() {
+      return {
+        selectedOption: 'all_off',
+        selectedSection: 'home'
+      }
+    },
+    methods: {
+      selectSection(section) {
+        this.selectedSection = section;
+      }
+    }
+  });
+  
+  app.mount('#app');
+</script>
+</body>
+
+</html>
